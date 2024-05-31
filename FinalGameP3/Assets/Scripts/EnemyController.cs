@@ -6,6 +6,10 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     public float lookRadius = 10f;
+    public int maxHealth = 5;
+
+    public int health { get { return currentHealth; } }
+    int currentHealth;
 
     Transform target;
     NavMeshAgent agent;
@@ -17,6 +21,7 @@ public class EnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
+
     void Update()
     {
         float distance = Vector3.Distance(target.position, transform.position);
@@ -27,12 +32,11 @@ public class EnemyController : MonoBehaviour
             
             if (distance <= agent.stoppingDistance)
             {
-                //Attack the target
                 FaceTarget();
             }
         }
     }
-
+    //look in your direction
     void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
@@ -40,9 +44,15 @@ public class EnemyController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
+    //Enemy vision
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
+    }
+    //Defeated
+    private void OnTriggerEnter(Collider other)
+    {
+        gameObject.SetActive(false);
     }
 }

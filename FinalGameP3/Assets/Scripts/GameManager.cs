@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject pauseScreen;
     private bool paused;
-    public TextMeshProUGUI gameOverText;
+    public GameObject gameOverText;
     public bool isGameActive;
     public Button restartButton;
     // Start is called before the first frame update
@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameOverText.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     void ChangePaused()

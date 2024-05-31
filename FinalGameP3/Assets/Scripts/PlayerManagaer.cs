@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerManagaer : MonoBehaviour
 {
+    //know what the player is
     #region Singleton
 
     public static PlayerManagaer instance;
