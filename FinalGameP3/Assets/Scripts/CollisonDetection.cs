@@ -6,6 +6,7 @@ public class CollisonDetection : MonoBehaviour
 {
     public WeaponController wc;
     public GameObject HitPraticle;
+   
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,8 +15,10 @@ public class CollisonDetection : MonoBehaviour
             Debug.Log(other.name);
             other.GetComponent<Animator>().SetTrigger("Hit");
             Instantiate(HitPraticle, new Vector3(other.transform.position.x,transform.position.y, other.transform.position.z), other.transform.rotation);
+
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {

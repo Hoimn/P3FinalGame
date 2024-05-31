@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [Header("Configurations")]
     public float walkSpeed;
     public float runSpeed;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -8,7 +8,7 @@ public class WeaponController : MonoBehaviour
     public bool CanAttack = true;
     public float AttackCooldown = 1.0f;
     public AudioClip SwordAttackSound;
-    public bool IsAttacking = false; 
+    public bool IsAttacking = true; 
 
     // Start is called before the first frame update
     void Start()
@@ -31,24 +31,9 @@ public class WeaponController : MonoBehaviour
     public void SwordAttack()
     {
         IsAttacking = true;
-        CanAttack = false;
         Animator anim = GetComponent<Animator>();
         anim.SetTrigger("Attack");
         AudioSource ac = GetComponent<AudioSource>();
         ac.PlayOneShot(SwordAttackSound);
-        StartCoroutine(ResetAttackCooldown());
-    }
-
-    IEnumerator ResetAttackCooldown()
-    {
-        StartCoroutine(ResetAttackCooldown());
-        yield return new WaitForSeconds(AttackCooldown);
-        CanAttack = true;
-    }
-
-    IEnumerator ResetAttackBool()
-    {
-        yield return new WaitForSeconds(1.0f);
-        IsAttacking = false;
     }
 }
